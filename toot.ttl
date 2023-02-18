@@ -1,0 +1,218 @@
+@prefix toot: <http://joinmastodon.org/ns#> .
+@prefix as: <http://www.w3.org/ns/activitystreams#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://joinmastodon.org/ns#> a owl:Ontology ;
+  rdfs:comment "Mastodon Toot Ontology"@en ;
+  rdfs:description """Reverse-engineered from Mastodon sources and related experimentation. WARNING: Probably not complete nor accurate."""@en ;
+  rdfs:seeAlso <https://github.com/w3c/activitystreams/blob/master/vocabulary/activitystreams2.owl> ;
+  rdfs:seeAlso <https://docs.joinmastodon.org/spec/activitypub/> ;
+  rdfs:label "Toot"@en ;
+  owl:imports <http://www.w3.org/ns/activitystreams#> ;
+.
+
+# NOTE: Mastodon adds some terms to the ActivityStreams namespace
+
+as:manuallyApprovesFollowers
+  rdfs:label "manuallyApprovesFollowers"@en ;
+  rdfs:comment "Will be shown as a locked account. (if true?)"@en ;
+  a owl:DatatypeProperty ;
+  a owl:FunctionalProperty ;
+  rdfs:domain as:Object ;
+  rdfs:range xsd:boolean ;
+.
+
+as:sensitive
+  rdfs:label "sensitive"@en ;
+  rdfs:comment "Used to determine whether status media or text should be hidden by default"@en ;
+  a owl:DatatypeProperty ;
+  a owl:FunctionalProperty ;
+  rdfs:domain as:Object ;
+  rdfs:range xsd:boolean ;
+.
+
+as:Hashtag
+  rdfs:label "Hashtag"@en ;
+  rdfs:comment "A word preceded by a hash (#) that links to a topic."@en ;
+  a owl:Class ;
+  rdfs:subClassOf as:Link ;
+.
+
+as:movedTo
+  rdfs:label "movedTo"@en ;
+  rdfs:Comment "The new URL for an actor after a move."@en ;
+  a owl:DatatypeProperty ;
+  rdfs:domain as:Object ;
+  rdfs:range xsd:anyURI
+.
+
+as:alsoKnownAs
+  rdfs:label "alsoKnownAs"@en ;
+  rdfs:Comment "A URL where an actor was previously located."@en ;
+  a owl:DatatypeProperty ;
+  rdfs:domain as:Object ;
+  rdfs:range xsd:anyURI
+.
+
+toot:Emoji
+  rdfs:label "Emoji"@en ;
+  a owl:Class ;
+  rdfs:subClassOf as:Image ;
+  rdfs:comment "Small images uploaded by admins and invokable via shortcodes"@en ;
+.
+
+toot:featured
+  rdfs:label "featured"@en ;
+  a owl:DatatypeProperty ;
+  rdfs:domain as:Object ;
+  rdfs:range as:Collection ;
+.
+
+toot:featuredTags
+  rdfs:label "featuredTags"@en ;
+  rdfs:comment "Mastodon allows users to feature specific hashtags on their profile for easy browsing, as a discoverability mechanism. This is implemented using an extra property featuredTags on the actor object that points to a Collection of Hashtag objects specifically."@en ;
+  a owl:DatatypeProperty ;
+  rdfs:domain as:Object ;
+  rdfs:range as:Collection ;
+.
+
+toot:focalPoint
+  rdfs:label "focalPoint"@en ;
+  rdfs:comment "A focal point on uploaded images, so that wherever that image is displayed, the focal point stays in view."@en ;
+  a owl:DatatypeProperty ;
+  rdfs:domain as:Object ;
+  rdfs:range as:Object ; # TODO This should be a 2 element integer array
+.
+
+toot:blurHash
+  rdfs:label "blurHash"@en ;
+  rdfs:comment "Used to generate a blurred preview image corresponding to the colors used within the image. See Blurhash for more details."@en ;
+  a owl:DatatypeProperty ;
+  rdfs:domain as:Object ;
+  rdfs:range xsd:string ;
+.
+
+toot:discoverable
+  rdfs:label "discoverable"@en ;
+  rdfs:comment "Mastodon allows users to opt-in or opt-out of discoverability features like the profile directory. This flag may also be used as an indicator of the user\’s preferences toward being included in external discovery services, such as search engines or other indexing tools."@en ;
+  a owl:DatatypeProperty ;
+  a owl:FunctionalProperty ;
+  rdfs:domain as:Object ;
+  rdfs:range xsd:boolean ;
+.
+
+toot:suspended
+  rdfs:label "suspended"@en ;
+  rdfs:comment "Whether a user was locally suspended"@en ;
+  a owl:DatatypeProperty ;
+  a owl:FunctionalProperty ;
+  rdfs:domain as:Object ;
+  rdfs:range xsd:boolean ;
+.
+
+toot:votersCount
+  rdfs:label "votersCount"@en ;
+  rdfs:comment "How many people have voted in the poll. Distinct from how many votes have been cast (in the case of multiple-choice polls)"@en ;
+  a owl:DatatypeProperty ;
+  a owl:FunctionalProperty ;
+  rdfs:domain as:Object ;
+  rdfs:range xsd:unsignedInt ;
+.
+
+toot:featured
+  rdfs:label "featured"@en ;
+  rdfs:comment "\"Pinned statuses\”, or statuses that are always featured at the top of people\’s profiles"@en ;
+  a owl:ObjectProperty ;
+.
+
+toot:featuredTags
+  rdfs:label "featuredTags"@en ;
+  rdfs:comment "Features specific hashtags on a user\'s profile for easy browsing, as a discoverability mechanism."@en ;
+  a owl:ObjectProperty ;
+  # rdfs:range as:Collection ;
+.
+
+#
+# Security-related. Seems to overlap with security ontology. 
+# Some of it may not be supported.
+#
+
+toot:MaybeNotSupportedClass
+  a owl:Class
+.
+
+toot:maybeNotSupportedObjectProperty
+  a owl:ObjectProperty
+.
+
+toot:maybeNotSupportedDataProperty
+  a owl:DatatypeProperty
+.
+
+toot:Ed25519Signature
+  a owl:Class ;
+  rdfs:subClassOf toot:MaybeNotSupportedClass ;
+.
+
+toot:Ed25519Key
+  a owl:Class ;
+  rdfs:subClassOf toot:MaybeNotSupportedClass ;
+.
+
+toot:Curve25519Key
+  a owl:Class ;
+  rdfs:subClassOf toot:MaybeNotSupportedClass ;
+.
+
+toot:EncryptedMessage
+  a owl:Class ;
+  rdfs:subClassOf toot:MaybeNotSupportedClass ;
+.
+
+toot:Device
+  a owl:Class ;
+  rdfs:subClassOf toot:MaybeNotSupportedClass ;
+.
+
+toot:publicKeyBase64
+  rdfs:subPropertyOf toot:maybeNotSupportedDataProperty ;
+.
+
+toot:deviceId
+  rdfs:subPropertyOf toot:maybeNotSupportedDataProperty ;
+  rdfs:domain toot:Device ;
+.
+
+toot:claim
+  rdfs:subPropertyOf toot:maybeNotSupportedObjectProperty ;
+.
+
+toot:fingerprintKey
+  rdfs:subPropertyOf toot:maybeNotSupportedDataProperty ;
+.
+
+toot:identityKey
+  rdfs:subPropertyOf toot:maybeNotSupportedDataProperty ;
+.
+
+toot:devices
+  rdfs:subPropertyOf toot:maybeNotSupportedObjectProperty ;
+  rdfs:domain toot:Device ;
+  rdfs:range as:Collection ;
+.
+
+toot:messageFranking
+  rdfs:subPropertyOf toot:maybeNotSupportedDataProperty ;
+.
+
+toot:messageType
+  rdfs:subPropertyOf toot:maybeNotSupportedDataProperty ;
+.
+
+toot:cipherText
+  rdfs:subPropertyOf toot:maybeNotSupportedDataProperty ;
+.
+
+
