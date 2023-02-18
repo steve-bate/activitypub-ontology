@@ -1,10 +1,10 @@
 # ActivityPub / Mastodon Ontologies
 
-This ontology is an *unoffical* version of an [ActivityPub](https://www.w3.org/TR/activitypub/) [OWL](https://www.w3.org/TR/owl-ref/#Individual) ontology for experimentation and exploration purposes. It's based on an old [Activity Streams](https://www.w3.org/TR/activitystreams-core/) [ontology](https://github.com/w3c/activitystreams/blob/master/vocabulary/activitystreams2.owl) that was abandoned in favor of JSON-LD in ActivityPub. I also created a separate ontology for Mastodon (toot) extensions.
+This ontology is an *unofficial* version of an [ActivityPub](https://www.w3.org/TR/activitypub/) [OWL](https://www.w3.org/TR/owl-ref/#Individual) ontology for experimentation and exploration purposes. It's based on an old [Activity Streams](https://www.w3.org/TR/activitystreams-core/) [ontology](https://github.com/w3c/activitystreams/blob/master/vocabulary/activitystreams2.owl) that was abandoned in favor of JSON-LD in ActivityPub. I also created a separate ontology for Mastodon (toot) extensions.
 
 The ontology is represented in the [RDF Turtle format](https://www.w3.org/TR/turtle/). It can be viewed and browsed in tools like [Protégé](https://protege.stanford.edu/).
 
-## Changes to original AS ontology
+## Changes to the original AS ontology
 
 * Deprecated terms from the original Activity Streams ontology have been removed. 
 * Activity Pub extensions have been added to the Activity Streams namespace to be compatible with the Activity Streams JSON-LD context.
@@ -16,7 +16,7 @@ The ontology is represented in the [RDF Turtle format](https://www.w3.org/TR/tur
 
 ## Disclaimer
 
-I'm not an ontology engineer so I make claims that this is the best way (or even a good one) to represent the ontologies. I'm using this for my own purposes and releasing it in case someone else has a use for it (or wants to collaborate on improving it).
+I'm not an ontology engineer so I make no claims that this is the best way (or even a good one) to represent the ontologies. I'm using this for my own purposes and releasing it in case someone else has a use for it (or wants to collaborate on improving it).
 
 ## References
 
