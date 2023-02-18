@@ -96,7 +96,7 @@ toot:blurHash
 
 toot:discoverable
   rdfs:label "discoverable"@en ;
-  rdfs:comment "Mastodon allows users to opt-in or opt-out of discoverability features like the profile directory. This flag may also be used as an indicator of the user\’s preferences toward being included in external discovery services, such as search engines or other indexing tools."@en ;
+  rdfs:comment "Mastodon allows users to opt-in or opt-out of discoverability features like the profile directory. This flag may also be used as an indicator of the user's preferences toward being included in external discovery services, such as search engines or other indexing tools."@en ;
   a owl:DatatypeProperty ;
   a owl:FunctionalProperty ;
   rdfs:domain as:Object ;
@@ -123,13 +123,13 @@ toot:votersCount
 
 toot:featured
   rdfs:label "featured"@en ;
-  rdfs:comment "\"Pinned statuses\”, or statuses that are always featured at the top of people\’s profiles"@en ;
+  rdfs:comment '"Pinned statuses”, or statuses that are always featured at the top of an actor\'s profiles'@en ;
   a owl:ObjectProperty ;
 .
 
 toot:featuredTags
   rdfs:label "featuredTags"@en ;
-  rdfs:comment "Features specific hashtags on a user\'s profile for easy browsing, as a discoverability mechanism."@en ;
+  rdfs:comment "Features specific hashtags on a user's profile for easy browsing, as a discoverability mechanism."@en ;
   a owl:ObjectProperty ;
   # rdfs:range as:Collection ;
 .
