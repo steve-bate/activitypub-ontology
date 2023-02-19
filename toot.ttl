@@ -48,14 +48,6 @@ as:movedTo
   rdfs:range xsd:anyURI
 .
 
-as:alsoKnownAs
-  rdfs:label "alsoKnownAs"@en ;
-  rdfs:Comment "A URL where an actor was previously located."@en ;
-  a owl:DatatypeProperty ;
-  rdfs:domain as:Object ;
-  rdfs:range xsd:anyURI
-.
-
 toot:Emoji
   rdfs:label "Emoji"@en ;
   a owl:Class ;

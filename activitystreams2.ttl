@@ -1046,3 +1046,18 @@ as:shares
     owl:unionOf ( as:OrderedAnnounceCollection as:AnnounceCollection )
   ]
 .
+
+#################################################################
+#
+#    Other Extensions
+#    In JSON-LD context, but not in AS spec.
+#
+#################################################################
+
+as:alsoKnownAs
+  rdfs:label "alsoKnownAs"@en ;
+  rdfs:Comment "A URL where an actor was previously located."@en ;
+  a owl:DatatypeProperty ;
+  rdfs:domain as:Object ;
+  rdfs:range xsd:anyURI
+.
