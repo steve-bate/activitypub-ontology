@@ -1233,3 +1233,9 @@ mediaType fields to supply source information."""@en ;
   rdfs:domain as:Object ;
   rdfs:range as:Object ;
 .
+
+as:Public
+  a owl:Class ;
+  rdfs:label "Public" ;
+  rdfs:comment "Activities addressed to this special URI shall be accessible to all users, without authentication. Implementations MUST NOT deliver to the \"public\" special collection; it is not capable of receiving actual activities."@en ;
+.
