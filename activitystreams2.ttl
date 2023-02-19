@@ -916,6 +916,30 @@ as:Video a owl:Class ;
   rdfs:comment "A Video document of any kind."@en ;
   rdfs:subClassOf as:Document .
 
+as:IsFollowing a owl:Class ;
+  rdfs:label "IsFollowing"@en ;
+  rdfs:subClassOf as:Relationship ;
+  rdfs:comment "(Not documented). Apparently a type of Relationship." ;
+.
+
+as:IsFollowedBy a owl:Class ;
+  rdfs:label "IsFollowedBy"@en ;
+  rdfs:subClassOf as:Relationship ;
+  rdfs:comment "(Not documented). Apparently a type of Relationship." ;
+.
+
+as:IsContact a owl:Class ;
+  rdfs:label "IsContact"@en ;
+  rdfs:subClassOf as:Relationship ;
+  rdfs:comment "(Not documented). Apparently a type of Relationship." ;
+.
+
+as:IsMember a owl:Class ;
+  rdfs:label "IsMember"@en ;
+  rdfs:subClassOf as:Relationship ;
+  rdfs:comment "(Not documented). Apparently a type of Relationship." ;
+.
+
 rdf:nil a as:OrderedItems .
 
 #################################################################
@@ -1049,14 +1073,17 @@ as:shares
 
 #################################################################
 #
-#    Other Extensions
-#    In JSON-LD context, but not in AS spec.
+#    Other Terms
+#    Defined at https://www.w3.org/ns/activitystreams#activitypub,
+#    but not in the Activity Vocabulary document/specification.
 #
 #################################################################
 
 as:alsoKnownAs
   rdfs:label "alsoKnownAs"@en ;
   rdfs:Comment "A URL where an actor was previously located."@en ;
+  rdfs:seeAlso <https://github.com/w3c/activitystreams/issues/511> ;
+  rdfs:seeAlso <https://docs.joinmastodon.org/spec/activitypub/> ;
   a owl:DatatypeProperty ;
   rdfs:domain as:Object ;
   rdfs:range xsd:anyURI

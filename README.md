@@ -10,7 +10,10 @@ The ontology is represented in the [RDF Turtle format](https://www.w3.org/TR/tur
 * Activity Pub extensions have been added to the Activity Streams namespace to be compatible with the Activity Streams JSON-LD context.
 * An `Actor` class has been added. Any `Object` with an `inbox` is an `Actor`.
 * I've added type-restricted collections (e.g. `OrderedActivityCollection`).
+
+## Known Issues
 * The OWL range for `as:url` is challenging because the specification defines it as a union of a class (`Object`) and a data type (`xsd::anyURI`). I'm not sure how to model that in OWL or if it's even possible. 
+* Several of the terms in the `activitystreams` JSON-LD context are only mentioned in the [ActivityStreams 2.0 Terms](https://www.w3.org/ns/activitystreams#did-core) document. Most of them have no definition and the document is described as being "internal" and having "no official standing of any kind". I've done my best to guess as a proper interpretation.
 
 ![ontology dendogram](docs/ontology-dendogram.png)
 
@@ -22,6 +25,7 @@ I'm not an ontology engineer so I make no claims that this is the best way (or e
 
 * [ActivityPub](https://www.w3.org/TR/activitypub/)
 * [Activity Streams 2.0](https://www.w3.org/TR/activitystreams-core/)
+* [Activity Streams 2.0 Terms](https://www.w3.org/ns/activitystreams#did-core)
 * [Activity Vocabulary](https://www.w3.org/TR/activitystreams-vocabulary/)
 * [Activity Streams 2.0 JSON-LD Context](https://www.w3.org/ns/activitystreams.jsonld)
 * [Original Activity Streams 2 OWL Ontology (abandoned in 2016)](https://github.com/w3c/activitystreams/blob/master/vocabulary/activitystreams2.owl)
