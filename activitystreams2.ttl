@@ -1,7 +1,7 @@
-@base <http://www.w3.org/ns/activitystreams> .
+@base <https://www.w3.org/ns/activitystreams> .
 
-@prefix : <http://www.w3.org/ns/activitystreams#> .
-@prefix as: <http://www.w3.org/ns/activitystreams#> .
+@prefix : <https://www.w3.org/ns/activitystreams#> .
+@prefix as: <https://www.w3.org/ns/activitystreams#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
@@ -161,6 +161,22 @@ as:items a owl:ObjectProperty ;
   rdfs:label "items"@en ;
   rdfs:comment "Identifies the items contained in a collection. The items might be ordered or unordered."@en ;
   rdfs:domain as:Collection ;
+  rdfs:range [
+    a owl:Class ;
+    owl:unionOf (
+      [
+        a owl:Class ;
+        owl:unionOf ( as:Object as:Link )
+      ]
+      # TODO Not sure why this was defined this way for unordered items.
+      as:OrderedItems
+    )
+  ] .
+
+as:orderedItems a owl:ObjectProperty ;
+  rdfs:label "orderedItems"@en ;
+  rdfs:comment "Identifies the items contained in a collection. The items are ordered. Only show in examples in the AS2 spec."@en ;
+  rdfs:domain as:OrderedCollection ;
   rdfs:range [
     a owl:Class ;
     owl:unionOf (
@@ -410,6 +426,12 @@ as:content a owl:DatatypeProperty ;
   ] ;
   rdfs:domain as:Object .
 
+as:contentMap
+  a owl:DatatypeProperty ;
+  rdfs:subPropertyOf as:content ;
+  rdfs:label "contentMap"@en ;
+.
+
 as:name a owl:DatatypeProperty ;
   rdfs:label "name"@en ;
   rdfs:name "The default, plain-text display name of the object or link."@en ;
@@ -421,6 +443,12 @@ as:name a owl:DatatypeProperty ;
     a owl:Class ;
     owl:unionOf ( as:Object as:Link)
   ].
+
+as:nameMap
+  a owl:DatatypeProperty ;
+  rdfs:subPropertyOf as:name ;
+  rdfs:label "nameMap"@en ;
+.
 
 as:duration a owl:DatatypeProperty ,
   owl:FunctionalProperty ;
@@ -488,6 +516,15 @@ as:published a owl:DatatypeProperty ,
   rdfs:range xsd:dateTime ;
   rdfs:domain as:Object .
 
+# TODO The spec defines this as 'Object | Link | xsd:dateTime | xsd:boolean' which is not OWL-compatible (AFAIK)
+as:closed a owl:DatatypeProperty ,
+      owl:FunctionalProperty ;
+  rdfs:label "closed"@en ;
+  rdfs:comment "Indicates that a question has been closed, and answers are no longer accepted."@en ;
+  rdfs:range xsd:dateTime ;
+  rdfs:range xsd:boolean ;
+  rdfs:domain as:Object .
+
 as:radius a owl:DatatypeProperty ,
             owl:FunctionalProperty ;
   rdfs:label "radius"@en ;
@@ -529,6 +566,12 @@ as:summary a owl:DatatypeProperty ;
     owl:unionOf ( rdf:langString xsd:string )
   ] ;
   rdfs:domain as:Object .
+
+as:summaryMap
+  a owl:DatatypeProperty ;
+  rdfs:subPropertyOf as:summary ;
+  rdfs:label "summaryMap"@en ;
+.
 
 as:totalItems a owl:DatatypeProperty ,
         owl:FunctionalProperty ;
@@ -988,6 +1031,59 @@ as:outbox
   rdfs:range as:OrderedActivityCollection ;
 .
 
+as:proxyUrl
+  a owl:ObjectProperty ;
+  a owl:FunctionalProperty ;
+  rdfs:label 'proxyUrl'@en ;
+  rdfs:comment 'Endpoint URI so this actor\'s clients may access remote ActivityStreams objects which require authentication to access. To use this endpoint, the client posts an x-www-form-urlencoded id parameter with the value being the id of the requested ActivityStreams object.'@en ;
+  rdfs:domain as:Actor ;
+  rdfs:range xsd:anyURI ;
+.
+
+as:oauthAuthorizationEndpoint
+  a owl:ObjectProperty ;
+  a owl:FunctionalProperty ;
+  rdfs:label 'oauthAuthorizationEndpoint'@en ;
+  rdfs:comment 'If OAuth 2.0 bearer tokens [RFC6749] [RFC6750] are being used for authenticating client to server interactions, this endpoint specifies a URI at which a browser-authenticated user may obtain a new authorization grant.'@en ;
+  rdfs:domain as:Actor ;
+  rdfs:range xsd:anyURI ;
+.
+
+as:provideClientKey
+  a owl:ObjectProperty ;
+  a owl:FunctionalProperty ;
+  rdfs:label 'provideClientKey'@en ;
+  rdfs:comment 'If Linked Data Signatures and HTTP Signatures are being used for authentication and authorization, this endpoint specifies a URI at which browser-authenticated users may authorize a client\'s public key for client to server interactions.'@en ;
+  rdfs:domain as:Actor ;
+  rdfs:range xsd:anyURI ;
+.
+
+as:signClientKey
+  a owl:ObjectProperty ;
+  a owl:FunctionalProperty ;
+  rdfs:label 'provideClientKey'@en ;
+  rdfs:comment 'If Linked Data Signatures and HTTP Signatures are being used for authentication and authorization, this endpoint specifies a URI at which a client key may be signed by the actor\'s key for a time window to act on behalf of the actor in interacting with foreign servers.'@en ;
+  rdfs:domain as:Actor ;
+  rdfs:range xsd:anyURI ;
+.
+
+as:oauthTokenEndpoint
+  a owl:ObjectProperty ;
+  a owl:FunctionalProperty ;
+  rdfs:label 'oauthTokenEndpoint'@en ;
+  rdfs:comment 'If OAuth 2.0 bearer tokens [RFC6749] [RFC6750] are being used for authenticating client to server interactions, this endpoint specifies a URI at which a client may acquire an access token.'@en ;
+  rdfs:domain as:Actor ;
+  rdfs:range xsd:anyURI ;
+.
+
+as:sharedInbox
+  a owl:ObjectProperty ;
+  a owl:FunctionalProperty ;
+  rdfs:label 'sharedInbox'@en ;
+  rdfs:comment 'An optional endpoint used for wide delivery of publicly addressed activities and activities sent to followers. sharedInbox endpoints SHOULD also be publicly readable OrderedCollection objects containing objects addressed to the Public special collection.'@en ;
+  rdfs:domain as:Actor ;
+  rdfs:range as:OrderedActivityCollection ;
+.
 
 as:ActorCollection a owl:Class ;
   rdf:comment "A collection of Actors."@en ;
@@ -1071,20 +1167,69 @@ as:shares
   ]
 .
 
-#################################################################
-#
-#    Other Terms
-#    Defined at https://www.w3.org/ns/activitystreams#activitypub,
-#    but not in the Activity Vocabulary document/specification.
-#
-#################################################################
+as:streams
+  a owl:ObjectProperty ;
+  rdfs:comment "A list of supplementary Collections which may be of interest."@en ;
+  rdfs:domain as:Object ;
+  rdfs:range as:Collection;
+.
+
+as:preferredUsername
+  a owl:DatatypeProperty ;
+  rdfs:comment "A short username which may be used to refer to the actor, with no uniqueness guarantees."@en ;
+  rdfs:domain as:Actor ;
+  rdfs:range xsd:string;
+.
+
+# TODO I don't know yet how to model endpoints
+as:endpoints
+  a owl:ObjectProperty ;
+  rdfs:comment "A mapping of (typically server/domain-wide) endpoints which may be useful either for this actor or someone referencing this actor. This mapping may be nested inside the actor document as the value or may be a link to a JSON-LD document with these properties."@en ;
+  rdfs:domain as:Actor ;
+  rdfs:range xsd:Object;
+.
+
+# TODO Underspecified in the specs.
+as:uploadMedia
+  a owl:DatatypeProperty ;
+  rdfs:comment "Servers MAY support uploading document types to be referenced in activites, such as images, video or other binary data, but the precise mechanism is out of scope for this version of ActivityPub."@en ;
+  rdfs:seeAlso <https://www.w3.org/wiki/SocialCG/ActivityPub/MediaUpload> ;
+  rdfs:domain as:Object ;
+  rdfs:range xsd:anyUri;
+.
+
+as:likes
+  a owl:ObjectProperty ;
+  rdfs:comment "Every object MAY have a likes collection. This is a list of all Like activities with this object as the object property"@en ;
+  rdfs:domain as:Object ;
+  rdfs:range [
+    a owl:Class ;
+    owl:unionOf ( as:OrderedActivityCollection as:ActivityCollection )
+  ]
+.
 
 as:alsoKnownAs
+  a owl:ObjectProperty ;
   rdfs:label "alsoKnownAs"@en ;
-  rdfs:Comment "A URL where an actor was previously located."@en ;
+  rdfs:comment "Another actor which is the same actor. (Mostly used to support account moves.)"@en ;
   rdfs:seeAlso <https://github.com/w3c/activitystreams/issues/511> ;
   rdfs:seeAlso <https://docs.joinmastodon.org/spec/activitypub/> ;
-  a owl:DatatypeProperty ;
   rdfs:domain as:Object ;
-  rdfs:range xsd:anyURI
+  rdfs:range as:Actor ;
+.
+
+as:source
+  a owl:ObjectProperty ;
+  rdfs:label "source"@en ;
+  rdfs:comment """Conveys some sort of source from which the content markup was derived, 
+as a form of provenance, or to support future editing by clients. The source property is 
+intended to convey some sort of source from which the content markup 
+was derived, as a form of provenance, or to support future editing by 
+clients. In general, clients do the conversion from source to 
+content, not the other way around.
+
+The value of source is itself an object which uses its own content and 
+mediaType fields to supply source information."""@en ;
+  rdfs:domain as:Object ;
+  rdfs:range as:Object ;
 .

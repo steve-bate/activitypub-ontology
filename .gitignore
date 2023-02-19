@@ -2,3 +2,5 @@ catalog-v*.xml
 .vscode/
 __pycache__/
 *.code-workspace
+.venv/
+**/data/cache/
