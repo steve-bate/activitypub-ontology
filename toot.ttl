@@ -3,6 +3,9 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix sec: <https://w3id.org/security#> .
+# Mastodon-specific schema.org namespace
+@prefix mschema: <http://schema.org#> .
 
 <http://joinmastodon.org/ns#> a owl:Ontology ;
   rdfs:comment "Mastodon Toot Ontology"@en ;
@@ -13,116 +16,87 @@
   owl:imports <http://www.w3.org/ns/activitystreams#> ;
 .
 
-# NOTE: Mastodon adds some terms to the ActivityStreams namespace
-
-as:manuallyApprovesFollowers
-  rdfs:label "manuallyApprovesFollowers"@en ;
-  rdfs:comment "Will be shown as a locked account. (if true?)"@en ;
-  a owl:DatatypeProperty ;
-  a owl:FunctionalProperty ;
-  rdfs:domain as:Object ;
-  rdfs:range xsd:boolean ;
-.
-
-as:sensitive
-  rdfs:label "sensitive"@en ;
-  rdfs:comment "Used to determine whether status media or text should be hidden by default"@en ;
-  a owl:DatatypeProperty ;
-  a owl:FunctionalProperty ;
-  rdfs:domain as:Object ;
-  rdfs:range xsd:boolean ;
-.
-
-as:Hashtag
-  rdfs:label "Hashtag"@en ;
-  rdfs:comment "A word preceded by a hash (#) that links to a topic."@en ;
-  a owl:Class ;
-  rdfs:subClassOf as:Link ;
-.
-
-as:movedTo
-  rdfs:label "movedTo"@en ;
-  rdfs:Comment "The new URL for an actor after a move."@en ;
-  a owl:DatatypeProperty ;
-  rdfs:domain as:Object ;
-  rdfs:range xsd:anyURI
-.
-
 toot:Emoji
-  rdfs:label "Emoji"@en ;
   a owl:Class ;
   rdfs:subClassOf as:Image ;
+  rdfs:label "Emoji"@en ;
   rdfs:comment "Small images uploaded by admins and invokable via shortcodes"@en ;
 .
 
 toot:featured
+  a owl:ObjectProperty ;
+  a owl:FunctionalProperty ;
   rdfs:label "featured"@en ;
-  a owl:DatatypeProperty ;
   rdfs:domain as:Object ;
   rdfs:range as:Collection ;
 .
 
 toot:featuredTags
+  a owl:ObjectProperty ;
+  a owl:FunctionalProperty ;
   rdfs:label "featuredTags"@en ;
   rdfs:comment "Mastodon allows users to feature specific hashtags on their profile for easy browsing, as a discoverability mechanism. This is implemented using an extra property featuredTags on the actor object that points to a Collection of Hashtag objects specifically."@en ;
-  a owl:DatatypeProperty ;
   rdfs:domain as:Object ;
   rdfs:range as:Collection ;
 .
 
 toot:focalPoint
+ a owl:DatatypeProperty ;
+  a owl:FunctionalProperty ;
   rdfs:label "focalPoint"@en ;
   rdfs:comment "A focal point on uploaded images, so that wherever that image is displayed, the focal point stays in view."@en ;
-  a owl:DatatypeProperty ;
   rdfs:domain as:Object ;
   rdfs:range as:Object ; # TODO This should be a 2 element integer array
 .
 
 toot:blurHash
+  a owl:DatatypeProperty ;
+  a owl:FunctionalProperty ;
   rdfs:label "blurHash"@en ;
   rdfs:comment "Used to generate a blurred preview image corresponding to the colors used within the image. See Blurhash for more details."@en ;
-  a owl:DatatypeProperty ;
   rdfs:domain as:Object ;
   rdfs:range xsd:string ;
 .
 
 toot:discoverable
-  rdfs:label "discoverable"@en ;
-  rdfs:comment "Mastodon allows users to opt-in or opt-out of discoverability features like the profile directory. This flag may also be used as an indicator of the user's preferences toward being included in external discovery services, such as search engines or other indexing tools."@en ;
   a owl:DatatypeProperty ;
   a owl:FunctionalProperty ;
+  rdfs:label "discoverable"@en ;
+  rdfs:comment "Mastodon allows users to opt-in or opt-out of discoverability features like the profile directory. This flag may also be used as an indicator of the user's preferences toward being included in external discovery services, such as search engines or other indexing tools."@en ;
   rdfs:domain as:Object ;
   rdfs:range xsd:boolean ;
 .
 
 toot:suspended
-  rdfs:label "suspended"@en ;
-  rdfs:comment "Whether a user was locally suspended"@en ;
   a owl:DatatypeProperty ;
   a owl:FunctionalProperty ;
+  rdfs:label "suspended"@en ;
+  rdfs:comment "Whether a user was locally suspended"@en ;
   rdfs:domain as:Object ;
   rdfs:range xsd:boolean ;
 .
 
 toot:votersCount
-  rdfs:label "votersCount"@en ;
-  rdfs:comment "How many people have voted in the poll. Distinct from how many votes have been cast (in the case of multiple-choice polls)"@en ;
   a owl:DatatypeProperty ;
   a owl:FunctionalProperty ;
+  rdfs:label "votersCount"@en ;
+  rdfs:comment "How many people have voted in the poll. Distinct from how many votes have been cast (in the case of multiple-choice polls)"@en ;
   rdfs:domain as:Object ;
   rdfs:range xsd:unsignedInt ;
 .
 
 toot:featured
+  a owl:ObjectProperty ;
+  a owl:FunctionalProperty ;
   rdfs:label "featured"@en ;
   rdfs:comment '"Pinned statuses”, or statuses that are always featured at the top of an actor\'s profiles'@en ;
-  a owl:ObjectProperty ;
 .
 
 toot:featuredTags
+  a owl:ObjectProperty ;
+  a owl:FunctionalProperty ;
   rdfs:label "featuredTags"@en ;
   rdfs:comment "Features specific hashtags on a user's profile for easy browsing, as a discoverability mechanism."@en ;
-  a owl:ObjectProperty ;
   # rdfs:range as:Collection ;
 .
 
@@ -190,6 +164,8 @@ toot:identityKey
 .
 
 toot:devices
+  a owl:ObjectProperty ;
+  a owl:FunctionalProperty ;
   rdfs:subPropertyOf toot:maybeNotSupportedObjectProperty ;
   rdfs:domain toot:Device ;
   rdfs:range as:Collection ;
@@ -207,4 +183,61 @@ toot:cipherText
   rdfs:subPropertyOf toot:maybeNotSupportedDataProperty ;
 .
 
+#################################################################
+#
+#    Profile Properties
+#
+#    Use Mastodon variant of schema.org namespace.
+#
+#################################################################
 
+mschema:PropertyValue
+  a owl:Class
+.
+
+# TODO Fix name conflicts (owlready2)
+# mschema:name
+#   a owl:DatatypeProperty ;
+#   a owl:FunctionalProperty ;
+#   rdfs:domain mschema:PropertyValue ;
+#   rdfs:range xsd:string ;
+# .
+
+mschema:value
+  a owl:DatatypeProperty ;
+  a owl:FunctionalProperty ;
+  rdfs:domain mschema:PropertyValue ;
+  rdfs:range xsd:string ;
+.
+
+#################################################################
+#
+#    Security
+#
+#    Official security ontology wasn't completely compatible with
+#    Mastodon usage.
+#
+#################################################################
+
+sec:Key
+  a owl:Class
+.
+
+sec:publicKey
+  a owl:ObjectProperty ;
+  a owl:FunctionalProperty ;
+  rdfs:range owl:Key ;
+.
+
+sec:owner
+  a owl:ObjectProperty ;
+  rdfs:domain owl:Key ;
+  rdfs:range as:Object ;
+.
+
+sec:publicKeyPem
+  a owl:DatatypeProperty ;
+  a owl:FunctionalProperty ;
+  rdfs:domain owl:Key ;
+  rdfs:range xsd:string ;
+.

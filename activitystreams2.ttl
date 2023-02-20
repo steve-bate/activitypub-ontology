@@ -1,22 +1,17 @@
-@base <https://www.w3.org/ns/activitystreams> .
-
 @prefix : <https://www.w3.org/ns/activitystreams#> .
-@prefix as: <https://www.w3.org/ns/activitystreams#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix ldp: <http://www.w3.org/ns/ldp#> .
 
 
-<http://www.w3.org/ns/activitystreams2> a owl:Ontology ;
+<https://www.w3.org/ns/activitystreams> a owl:Ontology ;
   rdfs:comment "Experimental Activity Streams 2.0 Ontology"@en ;
   rdfs:description """Experimental and unoffical ontology for Activity Streams 2.0 and ActivityPub. 
 This was created for experimentation by Steve Bate and based on the original incomplete AS ontology."""@en ;
   rdfs:seeAlso <https://github.com/w3c/activitystreams/blob/master/vocabulary/activitystreams2.owl> ;
   rdfs:label "Activity Streams 2.0"@en ;
-  owl:imports <http://www.w3.org/ns/ldp#> ;
 .
 
 #################################################################
@@ -34,362 +29,362 @@ xsd:duration a rdfs:Datatype .
 #
 #################################################################
 
-as:actor a owl:ObjectProperty ;
+:actor a owl:ObjectProperty ;
   rdfs:label "actor"@en ;
-  rdfs:domain as:Activity ;
-  rdfs:comment "Subproperty of as:attributedTo that identifies the primary actor"@en ;
-  rdfs:subPropertyOf as:attributedTo ;
+  rdfs:domain :Activity ;
+  rdfs:comment "Subproperty of :attributedTo that identifies the primary actor"@en ;
+  rdfs:subPropertyOf :attributedTo ;
   rdfs:range [
     a owl:Class ;
-    owl:unionOf (as:Object as:Link)
+    owl:unionOf (:Object :Link)
   ] .
 
-as:attributedTo a owl:ObjectProperty ;
+:attributedTo a owl:ObjectProperty ;
   rdfs:label "attributedTo"@en;
   rdfs:comment "Identifies an entity to which an object is attributed"@en;
   rdfs:range [
     a owl:Class ;
-    owl:unionOf (as:Object as:Link)
+    owl:unionOf (:Object :Link)
   ] ;
   rdfs:domain [
     a owl:Class ;
-    owl:unionOf (as:Object as:Link)
+    owl:unionOf (:Object :Link)
   ] ; .
 
-as:attachment a owl:ObjectProperty ;
+:attachment a owl:ObjectProperty ;
   rdfs:label "attachment"@en ;
   rdfs:comment "Identifies a resource attached or related to an object that potentially requires special handling. The intent is to provide a model that is at least semantically similar to attachments in email."@en ;
   rdfs:range [
     a owl:Class ;
-    owl:unionOf ( as:Link as:Object )
+    owl:unionOf ( :Link :Object )
   ] ;
-  rdfs:domain as:Object ;
-  owl:equivalentProperty as:attachments .
+  rdfs:domain :Object ;
+  owl:equivalentProperty :attachments .
 
-as:bcc a owl:ObjectProperty ;
+:bcc a owl:ObjectProperty ;
   rdfs:label "bcc"@en ;
   rdfs:comment "Identifies one or more Objects that are part of the private secondary audience of this Object."@en ;
-  rdfs:domain as:Object ;
+  rdfs:domain :Object ;
   rdfs:range [
     a owl:Class ;
-    owl:unionOf ( as:Object as:Link )
+    owl:unionOf ( :Object :Link )
   ] .
 
-as:bto a owl:ObjectProperty ;
+:bto a owl:ObjectProperty ;
   rdfs:label "bto"@en ;
   rdfs:comment "Identifies an Object that is part of the private primary audience of this Object."@en ;
-  rdfs:domain as:Object ;
+  rdfs:domain :Object ;
   rdfs:range [
     a owl:Class ;
-    owl:unionOf ( as:Object as:Link )
+    owl:unionOf ( :Object :Link )
   ] .
 
-as:cc a owl:ObjectProperty ;
+:cc a owl:ObjectProperty ;
   rdfs:label "cc"@en ;
   rdfs:comment "Identifies an Object that is part of the public secondary audience of this Object."@en ;
-  rdfs:domain as:Object ;
+  rdfs:domain :Object ;
   rdfs:range [
     a owl:Class ;
-    owl:unionOf ( as:Object as:Link )
+    owl:unionOf ( :Object :Link )
   ] .
 
-as:context a owl:ObjectProperty ;
+:context a owl:ObjectProperty ;
   rdfs:label "context"@en ;
   rdfs:comment "Specifies the context within which an object exists or an activity was performed"@en ;
-  rdfs:domain as:Object ;
+  rdfs:domain :Object ;
   rdfs:range [
     a owl:Class ;
-      owl:unionOf ( as:Object as:Link )
+      owl:unionOf ( :Object :Link )
   ] .
 
-as:current a owl:FunctionalProperty ,
+:current a owl:FunctionalProperty ,
              owl:ObjectProperty ;
   rdfs:label "current"@en ;
   rdfs:comment "In a paged Collection, indicates the page that contains the most recently updated member items."@en ;
-  rdfs:domain as:Collection ;
+  rdfs:domain :Collection ;
   rdfs:range [
     a owl:Class ;
-    owl:unionOf ( as:CollectionPage as:Link )
+    owl:unionOf ( :CollectionPage :Link )
   ] .
 
-as:first a owl:FunctionalProperty ,
+:first a owl:FunctionalProperty ,
            owl:ObjectProperty ;
   rdfs:label "first"@en ;
-  rdfs:domain as:Collection ;
+  rdfs:domain :Collection ;
   rdfs:range [
     a owl:Class ;
-    owl:unionOf ( as:CollectionPage as:Link )
+    owl:unionOf ( :CollectionPage :Link )
   ] .
 
-as:generator a owl:ObjectProperty ;
+:generator a owl:ObjectProperty ;
   rdfs:label "generator"@en ;
   rdfs:comment "Identifies the entity (e.g. an application) that generated the object."@en ;
-  rdfs:domain as:Object ;
+  rdfs:domain :Object ;
   rdfs:range [
     a owl:Class ;
-    owl:unionOf ( as:Object as:Link )
+    owl:unionOf ( :Object :Link )
   ] .
 
-as:icon a owl:ObjectProperty ;
+:icon a owl:ObjectProperty ;
   rdfs:label "icon"@en ;
   rdfs:comment "Indicates an entity that describes an icon for this object. The image should have an aspect ratio of one (horizontal) to one (vertical) and should be suitable for presentation at a small size."@en ;
   rdfs:range [
     a owl:Class ;
-    owl:unionOf ( as:Image as:Link )
+    owl:unionOf ( :Image :Link )
   ] ;
-  rdfs:domain as:Object .
+  rdfs:domain :Object .
 
-as:image a owl:ObjectProperty ;
+:image a owl:ObjectProperty ;
   rdfs:label "image"@en ;
   rdfs:comment "Indicates an entity that describes an image for this object. Unlike the icon property, there are no aspect ratio or display size limitations assumed."@en ;
   rdfs:range [
     a owl:Class ;
-    owl:unionOf ( as:Image as:Link )
+    owl:unionOf ( :Image :Link )
   ] ;
-  rdfs:domain as:Object .
+  rdfs:domain :Object .
 
-as:inReplyTo a owl:ObjectProperty ;
+:inReplyTo a owl:ObjectProperty ;
   rdfs:label "inReplyTo"@en ;
   rdfs:comment "Indicates one or more entities for which this object is considered a response."@en ;
-  rdfs:domain as:Object ;
+  rdfs:domain :Object ;
   rdfs:range [
     a owl:Class ;
-    owl:unionOf ( as:Object as:Link )
+    owl:unionOf ( :Object :Link )
   ] .
 
-as:items a owl:ObjectProperty ;
+:items a owl:ObjectProperty ;
   rdfs:label "items"@en ;
   rdfs:comment "Identifies the items contained in a collection. The items might be ordered or unordered."@en ;
-  rdfs:domain as:Collection ;
+  rdfs:domain :Collection ;
   rdfs:range [
     a owl:Class ;
     owl:unionOf (
       [
         a owl:Class ;
-        owl:unionOf ( as:Object as:Link )
+        owl:unionOf ( :Object :Link )
       ]
       # TODO Not sure why this was defined this way for unordered items.
-      as:OrderedItems
+      :OrderedItems
     )
   ] .
 
-as:orderedItems a owl:ObjectProperty ;
+:orderedItems a owl:ObjectProperty ;
   rdfs:label "orderedItems"@en ;
   rdfs:comment "Identifies the items contained in a collection. The items are ordered. Only show in examples in the AS2 spec."@en ;
-  rdfs:domain as:OrderedCollection ;
+  rdfs:domain :OrderedCollection ;
   rdfs:range [
     a owl:Class ;
     owl:unionOf (
       [
         a owl:Class ;
-        owl:unionOf ( as:Object as:Link )
+        owl:unionOf ( :Object :Link )
       ]
-      as:OrderedItems
+      :OrderedItems
     )
   ] .
 
-as:last a owl:FunctionalProperty ,
+:last a owl:FunctionalProperty ,
           owl:ObjectProperty ;
   rdfs:label "last"@en ;
   rdfs:comment "In a paged Collection, indicates the furthest proceeding page of the collection."@en ;
-  rdfs:domain as:Collection ;
+  rdfs:domain :Collection ;
   rdfs:range [
     a owl:Class ;
-    owl:unionOf ( as:CollectionPage as:Link )
+    owl:unionOf ( :CollectionPage :Link )
   ] .
 
-as:location a owl:ObjectProperty ;
+:location a owl:ObjectProperty ;
   rdfs:label "location"@en ;
   rdfs:comment "Indicates one or more physical or logical locations associated with the object."@en ;
-  rdfs:domain as:Object ;
+  rdfs:domain :Object ;
   rdfs:range [
     a owl:Class ;
-    owl:unionOf ( as:Object as:Link )
+    owl:unionOf ( :Object :Link )
   ] .
 
-as:next a owl:FunctionalProperty ,
+:next a owl:FunctionalProperty ,
           owl:ObjectProperty ;
   rdfs:label "next"@en ;
   rdfs:comment "In a paged Collection, indicates the next page of items."@en ;
-  rdfs:domain as:CollectionPage ;
+  rdfs:domain :CollectionPage ;
   rdfs:range [
     a owl:Class ;
-    owl:unionOf ( as:CollectionPage as:Link )
+    owl:unionOf ( :CollectionPage :Link )
   ] .
 
-as:object a owl:ObjectProperty ;
+:object a owl:ObjectProperty ;
   rdfs:label "object"@en ;
   rdfs:comment """When used within an Activity, describes the direct object of the activity. For instance, in the activity "John added a movie to his wishlist", the object of the activity is the movie added.
 
 When used within a Relationship describes the entity to which the subject is related."""@en ;
   rdfs:domain [
     a owl:Class ;
-      owl:unionOf ( as:Activity as:Relationship )
+      owl:unionOf ( :Activity :Relationship )
   ];
   rdfs:range [
     a owl:Class ;
-    owl:unionOf ( as:Object as:Link )
+    owl:unionOf ( :Object :Link )
   ] .
 
-as:oneOf a owl:ObjectProperty ;
+:oneOf a owl:ObjectProperty ;
   rdfs:label "oneOf"@en ;
   rdfs:comment "Describes a possible exclusive answer or option for a question."@en ;
   rdfs:range [
     a owl:Class ;
-    owl:unionOf ( as:Object as:Link )
+    owl:unionOf ( :Object :Link )
   ] ;
-  rdfs:domain as:Question .
+  rdfs:domain :Question .
 
-as:anyOf a owl:ObjectProperty ;
+:anyOf a owl:ObjectProperty ;
   rdfs:label "oneOf"@en ;
   rdfs:comment "Describes a possible inclusive answer or option for a question."@en ;
   rdfs:range [
     a owl:Class ;
-    owl:unionOf ( as:Object as:Link )
+    owl:unionOf ( :Object :Link )
   ] ;
-  rdfs:domain as:Question .
+  rdfs:domain :Question .
 
-as:prev a owl:FunctionalProperty ,
+:prev a owl:FunctionalProperty ,
           owl:ObjectProperty ;
   rdfs:label "prev"@en ;
   rdfs:comment "In a paged Collection, identifies the previous page of items."@en ;
-  rdfs:domain as:CollectionPage ;
+  rdfs:domain :CollectionPage ;
   rdfs:range [
     a owl:Class ;
-    owl:unionOf ( as:CollectionPage as:Link )
+    owl:unionOf ( :CollectionPage :Link )
   ] .
 
-as:preview a owl:ObjectProperty ;
+:preview a owl:ObjectProperty ;
   rdfs:label "preview"@en ;
   rdfs:comment "Identifies an entity that provides a preview of this object."@en ;
   rdfs:domain [
     a owl:Class ;
-    owl:unionOf ( as:Object as:Link )
+    owl:unionOf ( :Object :Link )
   ] ;
   rdfs:range [
     a owl:Class ;
-    owl:unionOf ( as:Object as:Link )
+    owl:unionOf ( :Object :Link )
   ] .
 
-as:replies a owl:ObjectProperty ;
+:replies a owl:ObjectProperty ;
   rdfs:label "replies"@en ;
   rdfs:comment "Identifies a Collection containing objects considered to be responses to this object."@en ;
-  rdfs:range as:Collection ;
-  rdfs:domain as:Object .
+  rdfs:range :Collection ;
+  rdfs:domain :Object .
 
-as:result a owl:ObjectProperty ;
+:result a owl:ObjectProperty ;
   rdfs:label "result"@en ;
   rdfs:comment "Describes the result of the activity. For instance, if a particular action results in the creation of a new resource, the result property can be used to describe that new resource."@en ;
-  rdfs:domain as:Activity ;
+  rdfs:domain :Activity ;
   rdfs:range [
     a owl:Class ;
-    owl:unionOf ( as:Object as:Link )
+    owl:unionOf ( :Object :Link )
   ] .
 
-as:audience a owl:ObjectProperty ;
+:audience a owl:ObjectProperty ;
   rdfs:label "audience"@en ;
   rdfs:comment "Identifies one or more entities that represent the total population of entities for which the object can considered to be relevant."@en ;
-  rdfs:domain as:Object ;
+  rdfs:domain :Object ;
   rdfs:range [
     a owl:Class ;
-    owl:unionOf ( as:Object as:Link )
+    owl:unionOf ( :Object :Link )
   ] .
 
-as:partOf a owl:FunctionalProperty ,
+:partOf a owl:FunctionalProperty ,
             owl:ObjectProperty ;
   rdfs:label "partOf"@en ;
   rdfs:comment "Identifies the Collection to which a CollectionPage objects items belong."@en ;
-  rdfs:domain as:CollectionPage ;
+  rdfs:domain :CollectionPage ;
   rdfs:range [
     a owl:Class ;
-    owl:unionOf ( as:Collection as:Link )
+    owl:unionOf ( :Collection :Link )
   ] .
 
-as:tag a owl:ObjectProperty ;
+:tag a owl:ObjectProperty ;
   rdfs:label "tag"@en ;
   rdfs:comment "One or more \"tags\" that have been associated with an objects. A tag can be any kind of Object. The key difference between attachment and tag is that the former implies association by inclusion, while the latter implies associated by reference."@en ;
-  rdfs:domain as:Object ;
+  rdfs:domain :Object ;
   rdfs:range [
     a owl:Class ;
-    owl:unionOf ( as:Object as:Link )
+    owl:unionOf ( :Object :Link )
   ] .
 
-as:target a owl:ObjectProperty ;
+:target a owl:ObjectProperty ;
   rdfs:label "target"@en ;
   rdfs:comment "Describes the indirect object, or target, of the activity. The precise meaning of the target is largely dependent on the type of action being described but will often be the object of the English preposition \"to\". For instance, in the activity \"John added a movie to his wishlist\", the target of the activity is John's wishlist. An activity can have more than one target."@en ;
-  rdfs:domain as:Activity ;
+  rdfs:domain :Activity ;
   rdfs:range [
     a owl:Class ;
-    owl:unionOf ( as:Object as:Link )
+    owl:unionOf ( :Object :Link )
   ] .
 
-as:origin a owl:ObjectProperty ;
+:origin a owl:ObjectProperty ;
   rdfs:label "origin"@en ;
   rdfs:comment "For certain activities, specifies the entity from which the action is directed."@en ;
-  rdfs:domain as:Activity ;
+  rdfs:domain :Activity ;
   rdfs:range [
     a owl:Class ;
-    owl:unionOf ( as:Object as:Link )
+    owl:unionOf ( :Object :Link )
   ] .
 
-as:instrument a owl:ObjectProperty ;
+:instrument a owl:ObjectProperty ;
   rdfs:label "instrument"@en ;
   rdfs:comment "Indentifies an object used (or to be used) to complete an activity"@en ;
-  rdfs:domain as:Activity ;
+  rdfs:domain :Activity ;
   rdfs:range [
     a owl:Class ;
-    owl:unionOf ( as:Object as:Link )
+    owl:unionOf ( :Object :Link )
   ] .
 
-as:to a owl:ObjectProperty ;
+:to a owl:ObjectProperty ;
   rdfs:label "to"@en ;
   rdfs:comment "Identifies an entity considered to be part of the public primary audience of an Object"@en ;
-  rdfs:domain as:Object ;
+  rdfs:domain :Object ;
   rdfs:range [
     a owl:Class ;
-    owl:unionOf ( as:Object as:Link )
+    owl:unionOf ( :Object :Link )
   ] .
 
-as:url a owl:ObjectProperty ;
+:url a owl:ObjectProperty ;
   rdfs:label "url"@en ;
   rdfs:comment "Specifies a link to a specific representation of the Object"@en ;
   rdfs:range [
     a owl:Class ;
-    owl:unionOf ( as:Link owl:Thing )  # TODO It's clear how to represent xsd:anyURI as specified.
+    owl:unionOf ( :Link owl:Thing )  # TODO It's clear how to represent xsd:anyURI as specified.
   ] ;
-  rdfs:domain as:Object .
+  rdfs:domain :Object .
 
-as:subject a owl:FunctionalProperty,
+:subject a owl:FunctionalProperty,
        owl:ObjectProperty;
   rdfs:label "a"@en;
   rdfs:comment "On a Relationship object, identifies the subject. e.g. when saying \"John is connected to Sally\", 'subject' refers to \'John\'"@en ;
-  rdfs:domain as:Relationship ;
+  rdfs:domain :Relationship ;
   rdfs:subPropertyOf rdf:subject ;
   rdfs:range [
     a owl:Class ;
-    owl:unionOf ( as:Link as:Object )
+    owl:unionOf ( :Link :Object )
   ].
 
-as:relationship a owl:ObjectProperty;
+:relationship a owl:ObjectProperty;
   rdfs:label "relationship"@en;
   rdfs:comment "On a Relationship object, describes the type of relationship"@en;
   rdfs:subPropertyOf rdf:predicate ;
-  rdfs:domain as:Relationship ;
+  rdfs:domain :Relationship ;
   rdfs:range rdf:Property .
 
-as:describes a owl:ObjectProperty,
+:describes a owl:ObjectProperty,
                owl:FunctionalProperty;
   rdfs:label "describes"@en;
   rdfs:comment "On a Profile object, describes the object described by the profile"@en ;
-  rdfs:domain as:Profile ;
-  rdfs:range as:Object .
+  rdfs:domain :Profile ;
+  rdfs:range :Object .
 
-as:formerType a owl:ObjectProperty,
+:formerType a owl:ObjectProperty,
                owl:FunctionalProperty;
   rdfs:label "formerType"@en;
   rdfs:comment "On a Tombstone object, describes the former type of the deleted object"@en ;
-  rdfs:domain as:Tombstone ;
-  rdfs:range as:Object .
+  rdfs:domain :Tombstone ;
+  rdfs:range :Object .
 
 #################################################################
 #
@@ -397,11 +392,11 @@ as:formerType a owl:ObjectProperty,
 #
 #################################################################
 
-as:accuracy a owl:DatatypeProperty ,
+:accuracy a owl:DatatypeProperty ,
             owl:FunctionalProperty ;
   rdfs:label "accuracy"@en ;
   rdfs:comment "Specifies the accuracy around the point established by the longitude and latitude"@en ;
-  rdfs:domain as:Place ;
+  rdfs:domain :Place ;
   rdfs:range [
     a rdfs:Datatype ;
     owl:onDatatype xsd:float ;
@@ -410,29 +405,29 @@ as:accuracy a owl:DatatypeProperty ,
     )
   ] .
 
-as:altitude a owl:DatatypeProperty ,
+:altitude a owl:DatatypeProperty ,
       owl:FunctionalProperty ;
   rdfs:label "altitude"@en ;
   rdfs:comment "The altitude of a place"@en;
-  rdfs:domain as:Place ;
+  rdfs:domain :Place ;
   rdfs:range xsd:float .
 
-as:content a owl:DatatypeProperty ;
+:content a owl:DatatypeProperty ;
   rdfs:label "content"@en ;
   rdfs:comment "The content of the object."@en ;
   rdfs:range [
     a owl:Class ;
     owl:unionOf ( rdf:langString xsd:string )
   ] ;
-  rdfs:domain as:Object .
+  rdfs:domain :Object .
 
-as:contentMap
+:contentMap
   a owl:DatatypeProperty ;
-  rdfs:subPropertyOf as:content ;
+  rdfs:subPropertyOf :content ;
   rdfs:label "contentMap"@en ;
 .
 
-as:name a owl:DatatypeProperty ;
+:name a owl:DatatypeProperty ;
   rdfs:label "name"@en ;
   rdfs:name "The default, plain-text display name of the object or link."@en ;
   rdfs:range [
@@ -441,95 +436,95 @@ as:name a owl:DatatypeProperty ;
   ] ;
   rdfs:domain [
     a owl:Class ;
-    owl:unionOf ( as:Object as:Link)
+    owl:unionOf ( :Object :Link)
   ].
 
-as:nameMap
+:nameMap
   a owl:DatatypeProperty ;
-  rdfs:subPropertyOf as:name ;
+  rdfs:subPropertyOf :name ;
   rdfs:label "nameMap"@en ;
 .
 
-as:duration a owl:DatatypeProperty ,
-  owl:FunctionalProperty ;
+:duration a owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
   rdfs:label "duration"@en ;
   rdfs:comment "The duration of the object"@en ;
   rdfs:range xsd:duration ;
-  rdfs:domain as:Object .
+  rdfs:domain :Object .
 
-as:endTime a owl:DatatypeProperty ,
+:endTime a owl:DatatypeProperty ,
     owl:FunctionalProperty ;
   rdfs:label "endTime"@en ;
   rdfs:comment "The ending time of the object"@en ;
   rdfs:range xsd:dateTime ;
-  rdfs:domain as:Object .
+  rdfs:domain :Object .
 
-as:height a owl:DatatypeProperty ,
+:height a owl:DatatypeProperty ,
   owl:FunctionalProperty ;
   rdfs:label "height"@en ;
   rdfs:comment "The display height expressed as device independent pixels"@en ;
   rdfs:range xsd:nonNegativeInteger ;
-  rdfs:domain as:Link .
+  rdfs:domain :Link .
 
-as:href a owl:DatatypeProperty ,
+:href a owl:ObjectProperty ,
   owl:FunctionalProperty ;
   rdfs:label "href"@en ;
   rdfs:comment "The target URI of the Link"@en ;
   rdfs:range xsd:anyURI ;
-  rdfs:domain as:Link .
+  rdfs:domain :Link .
 
-as:hreflang a owl:DatatypeProperty ,
+:hreflang a owl:DatatypeProperty ,
       owl:FunctionalProperty ;
   rdfs:label "hreflang"@en ;
   rdfs:comment "A hint about the language of the referenced resource"@en ;
   rdfs:range xsd:language ;
-  rdfs:domain as:Link .
+  rdfs:domain :Link .
 
-as:latitude a owl:DatatypeProperty ,
+:latitude a owl:DatatypeProperty ,
       owl:FunctionalProperty ;
   rdfs:label "latitude"@en ;
   rdfs:comment "The latitude"@en ;
   rdfs:range xsd:float ;
-  rdfs:domain as:Place .
+  rdfs:domain :Place .
 
-as:longitude a owl:DatatypeProperty ,
+:longitude a owl:DatatypeProperty ,
        owl:FunctionalProperty ;
   rdfs:label "longitude"@en ;
   rdfs:comment "The longitude"@en ;
   rdfs:range xsd:float ;
-  rdfs:domain as:Place .
+  rdfs:domain :Place .
 
-as:mediaType a owl:DatatypeProperty ,
+:mediaType a owl:DatatypeProperty ,
        owl:FunctionalProperty ;
   rdfs:label "mediaType"@en ;
   rdfs:comment "The MIME Media Type"@en ;
   rdfs:range xsd:string ;
   rdfs:domain [
     a owl:Class ;
-    owl:unionOf (as:Link as:Object)
+    owl:unionOf (:Link :Object)
   ] .
 
-as:published a owl:DatatypeProperty ,
+:published a owl:DatatypeProperty ,
       owl:FunctionalProperty ;
   rdfs:label "published"@en ;
   rdfs:comment "Specifies the date and time the object was published"@en ;
   rdfs:range xsd:dateTime ;
-  rdfs:domain as:Object .
+  rdfs:domain :Object .
 
 # TODO The spec defines this as 'Object | Link | xsd:dateTime | xsd:boolean' which is not OWL-compatible (AFAIK)
-as:closed a owl:DatatypeProperty ,
+:closed a owl:DatatypeProperty ,
       owl:FunctionalProperty ;
   rdfs:label "closed"@en ;
   rdfs:comment "Indicates that a question has been closed, and answers are no longer accepted."@en ;
   rdfs:range xsd:dateTime ;
   rdfs:range xsd:boolean ;
-  rdfs:domain as:Object .
+  rdfs:domain :Object .
 
-as:radius a owl:DatatypeProperty ,
+:radius a owl:DatatypeProperty ,
             owl:FunctionalProperty ;
   rdfs:label "radius"@en ;
   rdfs:comment "Specifies a radius around the point established by the longitude and latitude"@en ;
-  rdfs:domain as:Place ;
+  rdfs:domain :Place ;
   rdfs:range [
     a rdfs:Datatype ;
     owl:onDatatype xsd:float ;
@@ -538,49 +533,49 @@ as:radius a owl:DatatypeProperty ,
     )
   ] .
 
-as:rel a owl:DatatypeProperty ;
+:rel a owl:DatatypeProperty ;
   rdfs:label "rel"@en ;
   rdfs:comment "The RFC 5988 or HTML5 Link Relation associated with the Link"@en ;
   rdfs:range xsd:string ;
-  rdfs:domain as:Link .
+  rdfs:domain :Link .
 
-as:startIndex a owl:DatatypeProperty ,
+:startIndex a owl:DatatypeProperty ,
         owl:FunctionalProperty ;
   rdfs:label "startIndex"@en ;
   rdfs:comment "In a strictly ordered logical collection, specifies the index position of the first item in the items list"@en ;
   rdfs:range xsd:nonNegativeInteger ;
-  rdfs:domain as:OrderedCollectionPage .
+  rdfs:domain :OrderedCollectionPage .
 
-as:startTime a owl:DatatypeProperty ,
+:startTime a owl:DatatypeProperty ,
        owl:FunctionalProperty ;
   rdfs:label "startTime"@en ;
   rdfs:comment "The starting time of the object"@en ;
   rdfs:range xsd:dateTime ;
-  rdfs:domain as:Object .
+  rdfs:domain :Object .
 
-as:summary a owl:DatatypeProperty ;
+:summary a owl:DatatypeProperty ;
   rdfs:label "summary"@en ;
   rdfs:comment "A short summary of the object"@en ;
   rdfs:range [
     a owl:Class ;
     owl:unionOf ( rdf:langString xsd:string )
   ] ;
-  rdfs:domain as:Object .
+  rdfs:domain :Object .
 
-as:summaryMap
+:summaryMap
   a owl:DatatypeProperty ;
-  rdfs:subPropertyOf as:summary ;
+  rdfs:subPropertyOf :summary ;
   rdfs:label "summaryMap"@en ;
 .
 
-as:totalItems a owl:DatatypeProperty ,
+:totalItems a owl:DatatypeProperty ,
         owl:FunctionalProperty ;
   rdfs:label "totalItems"@en ;
   rdfs:comment "The total number of items in a logical collection"@en ;
   rdfs:range xsd:nonNegativeInteger ;
-  rdfs:domain as:Collection .
+  rdfs:domain :Collection .
 
-as:units a owl:DatatypeProperty ,
+:units a owl:DatatypeProperty ,
           owl:FunctionalProperty ;
   rdfs:label "units"@en ;
   rdfs:comment "Identifies the unit of measurement used by the radius, altitude and accuracy properties. The value can be expressed either as one of a set of predefined units or as a well-known common URI that identifies units."@en ;
@@ -599,41 +594,28 @@ as:units a owl:DatatypeProperty ,
       ]
       xsd:anyURI )
   ] ;
-  rdfs:domain as:Place .
+  rdfs:domain :Place .
 
-as:updated a owl:DatatypeProperty ,
+:updated a owl:DatatypeProperty ,
      owl:FunctionalProperty ;
   rdfs:label "updated"@en ;
   rdfs:comment "Specifies when the object was last updated"@en ;
   rdfs:range xsd:dateTime ;
-  rdfs:domain as:Object .
+  rdfs:domain :Object .
 
-#as:upstreamDuplicates a owl:DatatypeProperty,
-#        owl:DeprecatedProperty ;
-#  rdfs:label "upstreamDuplicates"@en ;
-#  rdfs:range xsd:anyURI ;
-#  rdfs:domain as:Object .
-
-#as:verb a owl:DatatypeProperty ,
-#  owl:FunctionalProperty,
-#  owl:DeprecatedProperty ;
-#  rdfs:label "verb"@en ;
-#  rdfs:range xsd:anyURI ;
-#  rdfs:domain as:Activity .
-
-as:width a owl:DatatypeProperty ,
+:width a owl:DatatypeProperty ,
    owl:FunctionalProperty ;
   rdfs:label "width"@en ;
   rdfs:comment "Specifies the preferred display width of the content, expressed in terms of device independent pixels."@en ;
   rdfs:range xsd:nonNegativeInteger ;
-  rdfs:domain as:Link .
+  rdfs:domain :Link .
 
-as:deleted a owl:DatatypeProperty ,
+:deleted a owl:DatatypeProperty ,
       owl:FunctionalProperty ;
   rdfs:label "deleted"@en ;
   rdfs:comment "Specifies the date and time the object was deleted"@en ;
   rdfs:range xsd:dateTime ;
-  rdfs:domain as:Tombstone .
+  rdfs:domain :Tombstone .
 
 #################################################################
 #
@@ -641,218 +623,218 @@ as:deleted a owl:DatatypeProperty ,
 #
 #################################################################
 
-as:Accept a owl:Class ;
+:Accept a owl:Class ;
   rdfs:label "Accept"@en ;
-  rdfs:subClassOf as:Activity ;
+  rdfs:subClassOf :Activity ;
   rdfs:comment "Actor accepts the Object"@en .
 
-as:Activity a owl:Class ;
+:Activity a owl:Class ;
   rdfs:label "Activity"@en ;
-  rdfs:subClassOf as:Object ;
+  rdfs:subClassOf :Object ;
   rdfs:comment "An Object representing some form of Action that has been taken"@en .
 
-as:Block a owl:Class ;
+:Block a owl:Class ;
   rdfs:label "Block"@en ;
-  rdfs:subClassOf as:Ignore .
+  rdfs:subClassOf :Ignore .
 
-as:IntransitiveActivity a owl:Class ;
+:IntransitiveActivity a owl:Class ;
   rdfs:label "IntransitiveActivity"@en ;
-  rdfs:subClassOf as:Activity ;
+  rdfs:subClassOf :Activity ;
   rdfs:subClassOf [
     a owl:Restriction ;
-      owl:onProperty as:object ;
+      owl:onProperty :object ;
       owl:maxCardinality "0"^^xsd:nonNegativeInteger
   ] ;
   rdfs:comment "An Activity that has no direct object"@en .
 
-as:Add a owl:Class ;
+:Add a owl:Class ;
   rdfs:label "Add"@en ;
-  rdfs:subClassOf as:Activity ;
+  rdfs:subClassOf :Activity ;
   rdfs:comment "To Add an Object or Link to Something"@en .
 
-as:Announce a owl:Class ;
+:Announce a owl:Class ;
   rdfs:label "Announce"@en;
-  rdfs:subClassOf as:Activity ;
+  rdfs:subClassOf :Activity ;
   rdfs:comment "Actor announces the object to the target"@en .
 
-as:Application a owl:Class ;
+:Application a owl:Class ;
   rdfs:label "Application"@en ;
-  rdfs:subClassOf as:Object ;
+  rdfs:subClassOf :Object ;
   rdfs:comment "Represents a software application of any sort"@en .
 
-as:Arrive a owl:Class ;
+:Arrive a owl:Class ;
   rdfs:label "Arrive"@en ;
-  rdfs:subClassOf as:IntransitiveActivity ;
+  rdfs:subClassOf :IntransitiveActivity ;
   rdfs:comment "To Arrive Somewhere (can be used, for instance, to indicate that a particular entity is currently located somewhere, e.g. a \"check-in\")"@en .
 
-as:Article a owl:Class ;
+:Article a owl:Class ;
   rdfs:label "Article"@en ;
-  rdfs:subClassOf as:Object ;
+  rdfs:subClassOf :Object ;
   rdfs:comment "A written work. Typically several paragraphs long. For example, a blog post or a news article."@en .
 
-as:Audio a owl:Class ;
+:Audio a owl:Class ;
   rdfs:label "Audio"@en ;
-  rdfs:subClassOf as:Document ;
+  rdfs:subClassOf :Document ;
   rdfs:comment "An audio file"@en .
 
-as:Collection a owl:Class ;
+:Collection a owl:Class ;
   rdfs:label "Collection"@en ;
-  rdfs:subClassOf as:Object ;
+  rdfs:subClassOf :Object ;
   rdfs:comment "An ordered or unordered collection of Objects or Links"@en .
 
-as:CollectionPage a owl:Class ;
+:CollectionPage a owl:Class ;
   rdfs:label "CollectionPage"@en ;
-  rdfs:subClassOf as:Collection ;
+  rdfs:subClassOf :Collection ;
   rdfs:comment "A subset of items from a Collection"@en .
 
-as:OrderedCollectionPage a owl:Class ;
+:OrderedCollectionPage a owl:Class ;
   rdfs:label "OrderedCollectionPage"@en;
-  rdfs:subClassOf as:CollectionPage ;
+  rdfs:subClassOf :CollectionPage ;
   rdfs:comment "An ordered subset of items from an OrderedCollection"@en .
 
-as:Relationship a owl:Class, rdf:Statement ;
+:Relationship a owl:Class, rdf:Statement ;
   rdfs:label "Relationship"@en ;
-  rdfs:subClassOf as:Object ;
+  rdfs:subClassOf :Object ;
   rdfs:comment "Represents a Social Graph relationship between two Individuals (indicated by the 'a' and 'b' properties)"@en .
 
-as:Create a owl:Class ;
+:Create a owl:Class ;
   rdfs:label "Create"@en ;
-  rdfs:subClassOf as:Activity ;
+  rdfs:subClassOf :Activity ;
   rdfs:comment "To Create Something"@en .
 
-as:Delete a owl:Class ;
+:Delete a owl:Class ;
   rdfs:label "Delete"@en ;
-  rdfs:subClassOf as:Activity ;
+  rdfs:subClassOf :Activity ;
   rdfs:comment "To Delete Something"@en .
 
-as:Dislike a owl:Class ;
+:Dislike a owl:Class ;
   rdfs:label "Dislike"@en;
-  rdfs:subClassOf as:Activity ;
+  rdfs:subClassOf :Activity ;
   rdfs:comment "The actor dislikes the object"@en .
 
-as:Document a owl:Class ;
+:Document a owl:Class ;
   rdfs:label "Document"@en ;
-  rdfs:subClassOf as:Object ;
+  rdfs:subClassOf :Object ;
   rdfs:comment "Represents a digital document/file of any sort"@en .
 
-as:Event a owl:Class ;
+:Event a owl:Class ;
   rdfs:label "Event"@en ;
-  rdfs:subClassOf as:Object ;
+  rdfs:subClassOf :Object ;
   rdfs:comment "An Event of any kind"@en .
 
-as:Flag a owl:Class ;
+:Flag a owl:Class ;
   rdfs:label "Flag"@en;
-  rdfs:subClassOf as:Activity ;
+  rdfs:subClassOf :Activity ;
   rdfs:comment "To flag something (e.g. flag as inappropriate, flag as spam, etc)"@en .
 
-as:Follow a owl:Class ;
+:Follow a owl:Class ;
   rdfs:label "Follow"@en ;
-  rdfs:subClassOf as:Activity ;
+  rdfs:subClassOf :Activity ;
   rdfs:comment "To Express Interest in Something"@en .
 
-as:Group a owl:Class ;
+:Group a owl:Class ;
   rdfs:label "Group"@en ;
-  rdfs:subClassOf as:Object ;
+  rdfs:subClassOf :Object ;
   rdfs:comment "A Group of any kind."@en .
 
-as:Ignore a owl:Class ;
+:Ignore a owl:Class ;
   rdfs:label "Ignore"@en ;
-  rdfs:subClassOf as:Activity ;
+  rdfs:subClassOf :Activity ;
   rdfs:comment "Actor is ignoring the Object"@en .
 
-as:Image a owl:Class ;
+:Image a owl:Class ;
   rdfs:label "Image"@en ;
-  rdfs:subClassOf as:Document ;
+  rdfs:subClassOf :Document ;
   rdfs:comment "An Image file"@en .
 
-as:Invite a owl:Class ;
+:Invite a owl:Class ;
   rdfs:label "Invite"@en ;
-  rdfs:subClassOf as:Offer ;
+  rdfs:subClassOf :Offer ;
   rdfs:comment "To invite someone or something to something"@en .
 
-as:Join a owl:Class ;
+:Join a owl:Class ;
   rdfs:label "Join"@en ;
-  rdfs:subClassOf as:Activity ;
+  rdfs:subClassOf :Activity ;
   rdfs:comment "To Join Something"@en .
 
-as:Leave a owl:Class ;
+:Leave a owl:Class ;
   rdfs:label "Leave"@en ;
-  rdfs:subClassOf as:Activity ;
+  rdfs:subClassOf :Activity ;
   rdfs:comment "To Leave Something"@en .
 
-as:Like a owl:Class ;
+:Like a owl:Class ;
   rdfs:label "Like"@en ;
-  rdfs:subClassOf as:Activity ;
+  rdfs:subClassOf :Activity ;
   rdfs:comment "To Like Something"@en .
 
-as:View a owl:Class ;
+:View a owl:Class ;
   rdfs:label "View"@en ;
-  rdfs:subClassOf as:Activity ;
+  rdfs:subClassOf :Activity ;
   rdfs:comment "The actor viewed the object"@en .
 
-as:Listen a owl:Class ;
+:Listen a owl:Class ;
   rdfs:label "Listen"@en ;
-  rdfs:subClassOf as:Activity ;
+  rdfs:subClassOf :Activity ;
   rdfs:comment "The actor listened to the object"@en .
 
-as:Read a owl:Class ;
+:Read a owl:Class ;
   rdfs:label "Read"@en ;
-  rdfs:subClassOf as:Activity ;
+  rdfs:subClassOf :Activity ;
   rdfs:comment "The actor read the object"@en .
 
-as:Move a owl:Class ;
+:Move a owl:Class ;
   rdfs:label "Move"@en ;
-  rdfs:subClassOf as:Activity ;
+  rdfs:subClassOf :Activity ;
   rdfs:comment "The actor is moving the object. The target specifies where the object is moving to. The origin specifies where the object is moving from."@en .
 
-as:Travel a owl:Class ;
+:Travel a owl:Class ;
   rdfs:label "Travel"@en ;
-  rdfs:subClassOf as:IntransitiveActivity ;
+  rdfs:subClassOf :IntransitiveActivity ;
   rdfs:comment "The actor is traveling to the target. The origin specifies where the actor is traveling from."@en .
 
-as:Link a owl:Class ;
+:Link a owl:Class ;
   rdfs:label "Link"@en ;
-  owl:disjointWith as:Object ;
+  owl:disjointWith :Object ;
   rdfs:comment "Represents a qualified reference to another resource. Patterned after the RFC5988 Web Linking Model"@en .
 
-as:Mention a owl:Class ;
+:Mention a owl:Class ;
   rdfs:label "Mention"@en ;
-  rdfs:subClassOf as:Link ;
+  rdfs:subClassOf :Link ;
   rdfs:comment "A specialized Link that represents an @mention"@en .
 
-as:Note a owl:Class ;
+:Note a owl:Class ;
   rdfs:label "Note"@en ;
-  rdfs:subClassOf as:Object ;
+  rdfs:subClassOf :Object ;
   rdfs:comment "A short note, typically less than a single paragraph. A \"tweet\" is an example, or a \"status update\""@en .
 
-as:Object a owl:Class ;
+:Object a owl:Class ;
   rdfs:comment "Describes an object of any kind. The Object type serves as the base type for most of the other kinds of objects defined in the Activity Vocabulary"@en ;
   rdfs:label "Object"@en .
 
-as:Offer a owl:Class ;
+:Offer a owl:Class ;
   rdfs:label "Offer"@en ;
-  rdfs:subClassOf as:Activity ;
+  rdfs:subClassOf :Activity ;
   rdfs:comment "To Offer something to someone or something"@en .
 
-as:OrderedCollection a owl:Class ;
+:OrderedCollection a owl:Class ;
   rdfs:label "OrderedCollection"@en ;
   rdfs:comment "A variation of Collection in which items are strictly ordered"@en;
   rdfs:subClassOf [
     a owl:Class;
     owl:intersectionOf (
-      as:Collection
+      :Collection
       [
         a owl:Restriction;
-        owl:onProperty as:items ;
+        owl:onProperty :items ;
         owl:allValuesFrom [
           a owl:Class ;
           owl:intersectionOf (
-            as:OrderedItems
+            :OrderedItems
             [
               a owl:Class ;
               owl:complementOf [
                 a owl:Class ;
-                owl:unionOf ( as:Object as:Link )
+                owl:unionOf ( :Object :Link )
               ]
             ]
           )
@@ -861,7 +843,7 @@ as:OrderedCollection a owl:Class ;
     )
   ] .
 
-as:OrderedItems a owl:Class ;
+:OrderedItems a owl:Class ;
   rdfs:label "OrderedItems"@en ;
   rdfs:comment "A ontology:List variant for Objects and Links"@en ;
   rdfs:subClassOf [
@@ -873,117 +855,117 @@ as:OrderedItems a owl:Class ;
         owl:onProperty rdf:first ;
         owl:allValuesFrom [
           a owl:Class ;
-          owl:unionOf ( as:Object as:Link )
+          owl:unionOf ( :Object :Link )
         ]
       ]
       [
         a owl:Restriction;
-        owl:allValuesFrom as:OrderedItems ;
+        owl:allValuesFrom :OrderedItems ;
         owl:onProperty rdf:rest
       ]
     )
   ] .
 
-as:Page a owl:Class ;
+:Page a owl:Class ;
   rdfs:label "Page"@en ;
-  rdfs:subClassOf as:Object ;
+  rdfs:subClassOf :Object ;
   rdfs:comment "A Web Page"@en .
 
-as:Person a owl:Class ;
+:Person a owl:Class ;
   rdfs:label "Person"@en ;
-  rdfs:subClassOf as:Object ;
+  rdfs:subClassOf :Object ;
   rdfs:comment "A Person"@en .
 
-as:Organization a owl:Class ;
+:Organization a owl:Class ;
   rdfs:label "Organization"@en ;
-  rdfs:subClassOf as:Object ;
+  rdfs:subClassOf :Object ;
   rdfs:comment "An Organization"@en .
 
-as:Profile a owl:Class ;
+:Profile a owl:Class ;
   rdfs:label "Profile"@en;
-  rdfs:subClassOf as:Object ;
+  rdfs:subClassOf :Object ;
   rdfs:comment "A Profile Document"@en .
 
-as:Place a owl:Class ;
+:Place a owl:Class ;
   rdfs:label "Place"@en ;
-  rdfs:subClassOf as:Object ;
+  rdfs:subClassOf :Object ;
   rdfs:comment "A physical or logical location"@en .
 
-as:Question a owl:Class ;
+:Question a owl:Class ;
   rdfs:label "Question"@en;
-  rdfs:subClassOf as:IntransitiveActivity ;
+  rdfs:subClassOf :IntransitiveActivity ;
   rdfs:comment "A question of any sort."@en .
 
-as:Reject a owl:Class ;
+:Reject a owl:Class ;
   rdfs:label "Reject"@en ;
-  rdfs:subClassOf as:Activity ;
+  rdfs:subClassOf :Activity ;
   rdfs:comment "Actor rejects the Object"@en .
 
-as:Remove a owl:Class ;
+:Remove a owl:Class ;
   rdfs:label "Remove"@en ;
-  rdfs:subClassOf as:Activity ;
+  rdfs:subClassOf :Activity ;
   rdfs:comment "To Remove Something"@en .
 
-as:Service a owl:Class ;
+:Service a owl:Class ;
   rdfs:label "Service"@en ;
-  rdfs:subClassOf as:Object ;
+  rdfs:subClassOf :Object ;
   rdfs:comment "A service provided by some entity"@en .
 
-as:TentativeAccept a owl:Class ;
+:TentativeAccept a owl:Class ;
   rdfs:label "TentativeAccept"@en ;
-  rdfs:subClassOf as:Accept ;
+  rdfs:subClassOf :Accept ;
   rdfs:comment "Actor tentatively accepts the Object"@en .
 
-as:TentativeReject a owl:Class ;
+:TentativeReject a owl:Class ;
   rdfs:label "TentativeReject"@en ;
-  rdfs:subClassOf as:Reject ;
+  rdfs:subClassOf :Reject ;
   rdfs:comment "Actor tentatively rejects the object"@en .
 
-as:Tombstone a owl:Class ;
+:Tombstone a owl:Class ;
   rdfs:label "Tombstone"@en;
-  rdfs:subClassOf as:Object ;
+  rdfs:subClassOf :Object ;
   rdfs:comment "A placeholder for a deleted object"@en .
 
-as:Undo a owl:Class ;
+:Undo a owl:Class ;
   rdfs:label "Undo"@en ;
-  rdfs:subClassOf as:Activity ;
+  rdfs:subClassOf :Activity ;
   rdfs:comment "To Undo Something. This would typically be used to indicate that a previous Activity has been undone."@en .
 
-as:Update a owl:Class ;
+:Update a owl:Class ;
   rdfs:label "Update"@en ;
   rdfs:comment "To Update/Modify Something"@en ;
-  rdfs:subClassOf as:Activity .
+  rdfs:subClassOf :Activity .
 
-as:Video a owl:Class ;
+:Video a owl:Class ;
   rdfs:label "Video"@en ;
   rdfs:comment "A Video document of any kind."@en ;
-  rdfs:subClassOf as:Document .
+  rdfs:subClassOf :Document .
 
-as:IsFollowing a owl:Class ;
+:IsFollowing a owl:Class ;
   rdfs:label "IsFollowing"@en ;
-  rdfs:subClassOf as:Relationship ;
+  rdfs:subClassOf :Relationship ;
   rdfs:comment "(Not documented). Apparently a type of Relationship." ;
 .
 
-as:IsFollowedBy a owl:Class ;
+:IsFollowedBy a owl:Class ;
   rdfs:label "IsFollowedBy"@en ;
-  rdfs:subClassOf as:Relationship ;
+  rdfs:subClassOf :Relationship ;
   rdfs:comment "(Not documented). Apparently a type of Relationship." ;
 .
 
-as:IsContact a owl:Class ;
+:IsContact a owl:Class ;
   rdfs:label "IsContact"@en ;
-  rdfs:subClassOf as:Relationship ;
+  rdfs:subClassOf :Relationship ;
   rdfs:comment "(Not documented). Apparently a type of Relationship." ;
 .
 
-as:IsMember a owl:Class ;
+:IsMember a owl:Class ;
   rdfs:label "IsMember"@en ;
-  rdfs:subClassOf as:Relationship ;
+  rdfs:subClassOf :Relationship ;
   rdfs:comment "(Not documented). Apparently a type of Relationship." ;
 .
 
-rdf:nil a as:OrderedItems .
+rdf:nil a :OrderedItems .
 
 #################################################################
 #
@@ -992,233 +974,237 @@ rdf:nil a as:OrderedItems .
 #
 #################################################################
 
-as:Actor a owl:Class ;
+:Actor a owl:Class ;
   rdf:comment "Any Object with an inbox is an Actor (extension to the original ontology)."@en ;
-  rdfs:subClassOf as:Object ;
+  rdfs:subClassOf :Object ;
   rdfs:subClassOf [ 
     rdf:type owl:Restriction ;
-    owl:onProperty as:inbox ;
-    owl:someValuesFrom as:OrderedActivityCollection
+    owl:onProperty ldp:inbox ;
+    owl:someValuesFrom :OrderedActivityCollection ;
+    owl:maxCardinality "1"^^xsd:nonNegativeInteger
   ]
 .
 
-as:OrderedActivityCollection a owl:Class ;
+:OrderedActivityCollection a owl:Class ;
   rdf:comment "A collection of Activities."@en ;
-  rdfs:subClassOf as:OrderedCollection ;
+  rdfs:subClassOf :OrderedCollection ;
   rdfs:subClassOf [ 
     rdf:type owl:Restriction ;
-    owl:onProperty as:orderedItems ;
-    owl:someValuesFrom as:Activity
+    owl:onProperty :orderedItems ;
+    owl:someValuesFrom :Activity
   ]
 .
 
-as:inbox
-  rdfs:subPropertyOf ldp:inbox ;
+# To match the JSON-LD namespace, the inbox must be in the ldp namespace.
+# I verified this using JSON-LD Playground with an example Actor object.
+ldp:inbox # :inbox
   a owl:ObjectProperty ;
   a owl:FunctionalProperty ;
+  # rdfs:subPropertyOf ldp:inbox ;
   rdfs:label "inbox"@en ;
   rdfs:comment 'The object\'s activity inbox containing all activities received by the actor (reverse-chronological order)'@en ;
-  rdfs:domain as:Actor ;
-  rdfs:range as:OrderedActivityCollection ;
+  rdfs:domain :Object ;
+  rdfs:range :OrderedActivityCollection ;
 .
 
-as:outbox
+:outbox
   a owl:ObjectProperty ;
   a owl:FunctionalProperty ;
   rdfs:label 'outbox'@en ;
   rdfs:comment 'The object\'s activity outbox (ordered, but order is undefined?)'@en ;
-  rdfs:domain as:Actor ;
-  rdfs:range as:OrderedActivityCollection ;
+  rdfs:domain :Actor ;
+  rdfs:range :OrderedActivityCollection ;
 .
 
-as:proxyUrl
+:proxyUrl
   a owl:ObjectProperty ;
   a owl:FunctionalProperty ;
   rdfs:label 'proxyUrl'@en ;
   rdfs:comment 'Endpoint URI so this actor\'s clients may access remote ActivityStreams objects which require authentication to access. To use this endpoint, the client posts an x-www-form-urlencoded id parameter with the value being the id of the requested ActivityStreams object.'@en ;
-  rdfs:domain as:Actor ;
+  rdfs:domain :Actor ;
   rdfs:range xsd:anyURI ;
 .
 
-as:oauthAuthorizationEndpoint
+:oauthAuthorizationEndpoint
   a owl:ObjectProperty ;
   a owl:FunctionalProperty ;
   rdfs:label 'oauthAuthorizationEndpoint'@en ;
   rdfs:comment 'If OAuth 2.0 bearer tokens [RFC6749] [RFC6750] are being used for authenticating client to server interactions, this endpoint specifies a URI at which a browser-authenticated user may obtain a new authorization grant.'@en ;
-  rdfs:domain as:Actor ;
+  rdfs:domain :Actor ;
   rdfs:range xsd:anyURI ;
 .
 
-as:provideClientKey
+:provideClientKey
   a owl:ObjectProperty ;
   a owl:FunctionalProperty ;
   rdfs:label 'provideClientKey'@en ;
   rdfs:comment 'If Linked Data Signatures and HTTP Signatures are being used for authentication and authorization, this endpoint specifies a URI at which browser-authenticated users may authorize a client\'s public key for client to server interactions.'@en ;
-  rdfs:domain as:Actor ;
+  rdfs:domain :Actor ;
   rdfs:range xsd:anyURI ;
 .
 
-as:signClientKey
+:signClientKey
   a owl:ObjectProperty ;
   a owl:FunctionalProperty ;
   rdfs:label 'provideClientKey'@en ;
   rdfs:comment 'If Linked Data Signatures and HTTP Signatures are being used for authentication and authorization, this endpoint specifies a URI at which a client key may be signed by the actor\'s key for a time window to act on behalf of the actor in interacting with foreign servers.'@en ;
-  rdfs:domain as:Actor ;
+  rdfs:domain :Actor ;
   rdfs:range xsd:anyURI ;
 .
 
-as:oauthTokenEndpoint
+:oauthTokenEndpoint
   a owl:ObjectProperty ;
   a owl:FunctionalProperty ;
   rdfs:label 'oauthTokenEndpoint'@en ;
   rdfs:comment 'If OAuth 2.0 bearer tokens [RFC6749] [RFC6750] are being used for authenticating client to server interactions, this endpoint specifies a URI at which a client may acquire an access token.'@en ;
-  rdfs:domain as:Actor ;
+  rdfs:domain :Actor ;
   rdfs:range xsd:anyURI ;
 .
 
-as:sharedInbox
+:sharedInbox
   a owl:ObjectProperty ;
   a owl:FunctionalProperty ;
   rdfs:label 'sharedInbox'@en ;
   rdfs:comment 'An optional endpoint used for wide delivery of publicly addressed activities and activities sent to followers. sharedInbox endpoints SHOULD also be publicly readable OrderedCollection objects containing objects addressed to the Public special collection.'@en ;
-  rdfs:domain as:Actor ;
-  rdfs:range as:OrderedActivityCollection ;
+  rdfs:domain :Actor ;
+  rdfs:range :OrderedActivityCollection ;
 .
 
-as:ActorCollection a owl:Class ;
+:ActorCollection a owl:Class ;
   rdf:comment "A collection of Actors."@en ;
-  rdfs:subClassOf as:Collection ;
+  rdfs:subClassOf :Collection ;
   rdfs:subClassOf [ 
     rdf:type owl:Restriction ;
-    owl:onProperty as:items ;
-    owl:someValuesFrom as:Actor
+    owl:onProperty :items ;
+    owl:someValuesFrom :Actor
   ]
 .
 
-as:OrderedActorCollection a owl:Class ;
+:OrderedActorCollection a owl:Class ;
   rdf:comment "A collection of Actors."@en ;
-  rdfs:subClassOf as:OrderedCollection ;
+  rdfs:subClassOf :OrderedCollection ;
   rdfs:subClassOf [ 
     rdf:type owl:Restriction ;
-    owl:onProperty as:orderedItems ;
-    owl:someValuesFrom as:Actor
+    owl:onProperty :orderedItems ;
+    owl:someValuesFrom :Actor
   ]
 .
 
-as:followers
+:followers
   a owl:ObjectProperty ;
   a owl:FunctionalProperty ;
   rdfs:comment "This is a collection of actors that have sent a Follow activity for the actor."@en ;
-  rdfs:domain as:Actor ;
+  rdfs:domain :Actor ;
   rdfs:range [
     a owl:Class ;
-    owl:unionOf ( as:OrderedActorCollection as:ActorCollection )
+    owl:unionOf ( :OrderedActorCollection :ActorCollection )
   ]
 .
 
-as:following
+:following
   a owl:ObjectProperty ;
   a owl:FunctionalProperty ;
   rdfs:comment "This is a collection of other actors that an actor is following."@en ;
-  rdfs:domain as:Actor ;
+  rdfs:domain :Actor ;
   rdfs:range [
     a owl:Class ;
-    owl:unionOf ( as:OrderedActorCollection as:ActorCollection )
+    owl:unionOf ( :OrderedActorCollection :ActorCollection )
   ]
 .
 
-as:liked
+:liked
   rdf:comment "The objects that an actor has liked."@en ;
   a owl:ObjectProperty ;
-  rdfs:domain as:Actor ;
+  rdfs:domain :Actor ;
   rdfs:range [
     a owl:Class ;
-    owl:unionOf ( as:OrderedCollection as:Collection )
+    owl:unionOf ( :OrderedCollection :Collection )
   ]
 .
 
-as:AnnounceCollection a owl:Class ;
+:AnnounceCollection a owl:Class ;
   rdf:comment "A collection of Actors."@en ;
-  rdfs:subClassOf as:Collection ;
+  rdfs:subClassOf :Collection ;
   rdfs:subClassOf [ 
     rdf:type owl:Restriction ;
-    owl:onProperty as:items ;
-    owl:someValuesFrom as:Announce
+    owl:onProperty :items ;
+    owl:someValuesFrom :Announce
   ]
 .
 
-as:OrderedAnnounceCollection a owl:Class ;
+:OrderedAnnounceCollection a owl:Class ;
   rdf:comment "A collection of Actors."@en ;
-  rdfs:subClassOf as:OrderedCollection ;
+  rdfs:subClassOf :OrderedCollection ;
   rdfs:subClassOf [ 
     rdf:type owl:Restriction ;
-    owl:onProperty as:orderedItems ;
-    owl:someValuesFrom as:Announce
+    owl:onProperty :orderedItems ;
+    owl:someValuesFrom :Announce
   ]
 .
 
-as:shares
+:shares
   rdf:comment "The collection of Announce activities for an object"@en ;
   a owl:ObjectProperty ;
-  rdfs:domain as:Object ;
+  rdfs:domain :Object ;
   rdfs:range [
     a owl:Class ;
-    owl:unionOf ( as:OrderedAnnounceCollection as:AnnounceCollection )
+    owl:unionOf ( :OrderedAnnounceCollection :AnnounceCollection )
   ]
 .
 
-as:streams
+:streams
   a owl:ObjectProperty ;
   rdfs:comment "A list of supplementary Collections which may be of interest."@en ;
-  rdfs:domain as:Object ;
-  rdfs:range as:Collection;
+  rdfs:domain :Object ;
+  rdfs:range :Collection;
 .
 
-as:preferredUsername
+:preferredUsername
   a owl:DatatypeProperty ;
+  a owl:FunctionalProperty ;
   rdfs:comment "A short username which may be used to refer to the actor, with no uniqueness guarantees."@en ;
-  rdfs:domain as:Actor ;
+  rdfs:domain :Actor ;
   rdfs:range xsd:string;
 .
 
 # TODO I don't know yet how to model endpoints
-as:endpoints
+:endpoints
   a owl:ObjectProperty ;
   rdfs:comment "A mapping of (typically server/domain-wide) endpoints which may be useful either for this actor or someone referencing this actor. This mapping may be nested inside the actor document as the value or may be a link to a JSON-LD document with these properties."@en ;
-  rdfs:domain as:Actor ;
+  rdfs:domain :Actor ;
   rdfs:range xsd:Object;
 .
 
 # TODO Underspecified in the specs.
-as:uploadMedia
+:uploadMedia
   a owl:DatatypeProperty ;
   rdfs:comment "Servers MAY support uploading document types to be referenced in activites, such as images, video or other binary data, but the precise mechanism is out of scope for this version of ActivityPub."@en ;
   rdfs:seeAlso <https://www.w3.org/wiki/SocialCG/ActivityPub/MediaUpload> ;
-  rdfs:domain as:Object ;
+  rdfs:domain :Object ;
   rdfs:range xsd:anyUri;
 .
 
-as:likes
+:likes
   a owl:ObjectProperty ;
   rdfs:comment "Every object MAY have a likes collection. This is a list of all Like activities with this object as the object property"@en ;
-  rdfs:domain as:Object ;
+  rdfs:domain :Object ;
   rdfs:range [
     a owl:Class ;
-    owl:unionOf ( as:OrderedActivityCollection as:ActivityCollection )
+    owl:unionOf ( :OrderedActivityCollection :ActivityCollection )
   ]
 .
 
-as:alsoKnownAs
+:alsoKnownAs
   a owl:ObjectProperty ;
   rdfs:label "alsoKnownAs"@en ;
   rdfs:comment "Another actor which is the same actor. (Mostly used to support account moves.)"@en ;
   rdfs:seeAlso <https://github.com/w3c/activitystreams/issues/511> ;
   rdfs:seeAlso <https://docs.joinmastodon.org/spec/activitypub/> ;
-  rdfs:domain as:Object ;
-  rdfs:range as:Actor ;
+  rdfs:domain :Object ;
+  rdfs:range :Actor ;
 .
 
-as:source
+:source
   a owl:ObjectProperty ;
   rdfs:label "source"@en ;
   rdfs:comment """Conveys some sort of source from which the content markup was derived, 
@@ -1230,12 +1216,51 @@ content, not the other way around.
 
 The value of source is itself an object which uses its own content and 
 mediaType fields to supply source information."""@en ;
-  rdfs:domain as:Object ;
-  rdfs:range as:Object ;
+  rdfs:domain :Object ;
+  rdfs:range :Object ;
 .
 
-as:Public
+:Public
   a owl:Class ;
   rdfs:label "Public" ;
   rdfs:comment "Activities addressed to this special URI shall be accessible to all users, without authentication. Implementations MUST NOT deliver to the \"public\" special collection; it is not capable of receiving actual activities."@en ;
+.
+
+#################################################################
+#
+#    Mastdodon extensions
+#
+#################################################################
+
+:manuallyApprovesFollowers
+  a owl:DatatypeProperty ;
+  a owl:FunctionalProperty ;
+  rdfs:label "manuallyApprovesFollowers"@en ;
+  rdfs:comment "Will be shown as a locked account. (if true?)"@en ;
+  rdfs:domain :Object ;
+  rdfs:range xsd:boolean ;
+.
+
+:sensitive
+  a owl:DatatypeProperty ;
+  a owl:FunctionalProperty ;
+  rdfs:label "sensitive"@en ;
+  rdfs:comment "Used to determine whether status media or text should be hidden by default"@en ;
+  rdfs:domain :Object ;
+  rdfs:range xsd:boolean ;
+.
+
+:Hashtag
+  a owl:Class ;
+  rdfs:subClassOf :Link ;
+  rdfs:label "Hashtag"@en ;
+  rdfs:comment "A word preceded by a hash (#) that links to a topic."@en ;
+ .
+
+:movedTo
+  a owl:DatatypeProperty ;
+  rdfs:label "movedTo"@en ;
+  rdfs:Comment "The new URL for an actor after a move."@en ;
+  rdfs:domain :Object ;
+  rdfs:range xsd:anyURI
 .

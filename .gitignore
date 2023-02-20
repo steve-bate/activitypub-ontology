@@ -4,3 +4,4 @@ __pycache__/
 *.code-workspace
 .venv/
 **/data/cache/
+.DS_Store
