@@ -6,7 +6,7 @@
 @prefix ldp: <http://www.w3.org/ns/ldp#> .
 
 
-<https://www.w3.org/ns/activitystreams> a owl:Ontology ;
+<https://www.w3.org/ns/activitystreams#> a owl:Ontology ;
   rdfs:comment "Experimental Activity Streams 2.0 Ontology"@en ;
   rdfs:description """Experimental and unoffical ontology for Activity Streams 2.0 and ActivityPub. 
 This was created for experimentation by Steve Bate and based on the original incomplete AS ontology."""@en ;
