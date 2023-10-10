@@ -1181,7 +1181,7 @@ ldp:inbox # :inbox
   rdfs:comment "Servers MAY support uploading document types to be referenced in activites, such as images, video or other binary data, but the precise mechanism is out of scope for this version of ActivityPub."@en ;
   rdfs:seeAlso <https://www.w3.org/wiki/SocialCG/ActivityPub/MediaUpload> ;
   rdfs:domain :Object ;
-  rdfs:range xsd:anyUri;
+  rdfs:range xsd:anyURI;
 .
 
 :likes
