@@ -984,8 +984,6 @@ as:OrderedActivityCollection a owl:Class ;
   ]
 .
 
-# To match the JSON-LD namespace, the inbox must be in the ldp namespace.
-# I verified this using JSON-LD Playground with an example Actor object.
 ldp:inbox # as:inbox
   a owl:ObjectProperty ;
   a owl:FunctionalProperty ;
@@ -1164,7 +1162,7 @@ as:endpoints
   rdfs:range xsd:Object;
 .
 
-# TODO Underspecified in the specs.
+# TODO Not in normative specifications
 as:uploadMedia
   a owl:DatatypeProperty ;
   rdfs:comment "Servers MAY support uploading document types to be referenced in activites, such as images, video or other binary data, but the precise mechanism is out of scope for this version of ActivityPub."@en ;
