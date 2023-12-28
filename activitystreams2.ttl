@@ -455,7 +455,7 @@ as:height a owl:DatatypeProperty ,
   rdfs:range xsd:nonNegativeInteger ;
   rdfs:domain as:Link .
 
-as:href a owl:ObjectProperty ,
+as:href a owl:DatatypeProperty ,
   owl:FunctionalProperty ;
   rdfs:label "href"@en ;
   rdfs:comment "The target URI of the Link"@en ;
