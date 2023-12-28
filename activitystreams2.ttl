@@ -421,12 +421,6 @@ as:content a owl:DatatypeProperty ;
   ] ;
   rdfs:domain as:Object .
 
-as:contentMap
-  a owl:DatatypeProperty ;
-  rdfs:subPropertyOf as:content ;
-  rdfs:label "contentMap"@en ;
-.
-
 as:name a owl:DatatypeProperty ;
   rdfs:label "name"@en ;
   rdfs:name "The default, plain-text display name of the object or link."@en ;
@@ -439,11 +433,6 @@ as:name a owl:DatatypeProperty ;
     owl:unionOf ( as:Object as:Link)
   ].
 
-as:nameMap
-  a owl:DatatypeProperty ;
-  rdfs:subPropertyOf as:name ;
-  rdfs:label "nameMap"@en ;
-.
 
 as:duration a owl:DatatypeProperty ,
     owl:FunctionalProperty ;
@@ -561,12 +550,6 @@ as:summary a owl:DatatypeProperty ;
     owl:unionOf ( rdf:langString xsd:string )
   ] ;
   rdfs:domain as:Object .
-
-as:summaryMap
-  a owl:DatatypeProperty ;
-  rdfs:subPropertyOf as:summary ;
-  rdfs:label "summaryMap"@en ;
-.
 
 as:totalItems a owl:DatatypeProperty ,
         owl:FunctionalProperty ;
